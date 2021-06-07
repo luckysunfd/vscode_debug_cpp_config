@@ -1,0 +1,32 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558 
+    // for the documentation about the tasks.json format
+    // 编译 相关 设置
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "clang++ build active file",
+            "command": "/usr/bin/clang++",
+            "args": [  // args数组是编译时传递给编译器的参数
+                "-std=c++17",
+                "-stdlib=libc++",
+                "-g",
+                "${workspaceFolder}/*.cpp", // 编译打开的项目目录下面的所有cpp文件
+                "-o",
+                "${workspaceFolder}/bin/main.out"  // with a hard-coded filename, 硬编码，编译后的文件名，以及编译后的文件的目录位置
+                // "${fileDirname}/${fileBasenameNoExtension}" // filedirname == current directory, 编译后放在当前项目目录下，以当前cpp不带后缀的文件作为名字
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}" // changes the current working directory (cwd) directive to the folder where helloworld.cpp is
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
